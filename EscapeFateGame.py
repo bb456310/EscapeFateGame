@@ -464,7 +464,12 @@ if door_choice == "door":
         character_select.loot_chest()
         trap_chance()
         print("After looting the chest, {name} is ready to move forward.".format(name=character_select.name))
-        input("Are you?")
+        ready_choice = input("Are you?")
+        ready_choice = ready_choice.lower()
+        while ready_choice != "yes":
+            print("It matters not! Forward is the only option!")
+        else:
+            print("And forward he goes...")
     if booty_choice == "no":
         print("\nNot trusting the gilded chest, he leaves the room behind, still searching for a way through.")
 if door_choice == "arch":
@@ -584,6 +589,7 @@ if path_choice == "right":
     else:
         kill_count += 1
         print("{name} has defeated {killcount} foes.\n".format(name=character_select.name, killcount = kill_count))
+        print("The Skeleton has fallen, but the bandit now takes his place, rushing at you sword first!")
     while band2.hp > 0:
         fight_choice = input("\nChoose your action: \n Attack \t Use Potion \t Defend \t Run")
         fight_choice = fight_choice.lower()
@@ -602,6 +608,7 @@ if path_choice == "right":
     else:
         kill_count += 1
         print("{name} has defeated {killcount} foes.\n".format(name=character_select.name, killcount = kill_count))
+        print("He's taken down the Bandit as well! But the Knight is there to bar the path.")
     while black2.hp > 0:
         fight_choice = input("\nChoose your action: \n Attack \t Use Potion \t Defend \t Run")
         fight_choice = fight_choice.lower()
