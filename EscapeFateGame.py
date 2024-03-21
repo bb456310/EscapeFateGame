@@ -97,6 +97,7 @@ class Character:
         self.level += 1
         print("\n{name} has levelled up! \nHe is now level {level}.".format(name=self.name, level = self.level))
         self.max_health = self.level * 6
+        self.health += 4
     
     def use_potion(self):
         if self.num_potions <=0:
