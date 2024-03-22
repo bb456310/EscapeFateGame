@@ -348,7 +348,7 @@ if character_select == chet:
     else:
         character_select.has_armor = True
 if character_select == ant:
-    print("The room is barren of anything useful.")
+    print("Anton glances around his surroundings for anything useful. Alas,")
 
 ##############################################################################################################
 ### first branch    
@@ -360,16 +360,17 @@ if room_choice == "door":
     break_choice = break_choice.lower()
     if break_choice == "yes":
         print("\nThe door easily gives and falls to the side. {name} steps through, making his way into the next room.".format(name=character_select.name))
-        investigate_choice = input("\nThe room is dark, but there is a closed case in the corner.\nInvestigate? or Move On?")
+        investigate_choice = input("\nThe room is dark, but there is a closed chest in the corner.\nInvestigate? or Move On?")
         investigate_choice = investigate_choice.lower()
         if investigate_choice == "investigate":
-            print("\nMoving toward the case, he sees there is a lock, but it appears to be broken.")
+            print("\nMoving toward the chest, he sees there is a lock, but it appears to be broken.")
             character_select.spring_trap()
-            print("The case was trapped all along! Proceed with extra caution moving forward!")
+            print("The chest was trapped all along! Proceed with extra caution moving forward!")
+            character_select.loot_chest
             input("Ready to move onward?")
             print("\n{name} moves forward, to the other side of the room.".format(name=character_select.name))
         if investigate_choice == "move on":
-            print("\nAvoiding the questionable case, {name} sneaks toward the other side of the room.".format(name=character_select.name))
+            print("\nAvoiding the questionable chest, {name} sneaks toward the other side of the room.".format(name=character_select.name))
     if break_choice == "no":
         print("\nDeciding against the door, he moves back to look for the other exit.")
         room_choice = "crevice"
@@ -396,7 +397,9 @@ if room_choice == "crevice":
     else:
         kill_count += 1
         print("{name} has defeated {killcount} foes.\n".format(name=character_select.name, killcount = kill_count))
-        print("Defeating the enemy, {name} makes his way to the other side of the room.".format(name=character_select.name))
+        print("Defeating the enemy, {name} plunders the room for a boon.".format(name=character_select.name))
+        print("A small chest hides lies behind the once again lifeless skeleton.")
+        character_select.loot_chest
 
 ##############################################################################################################
 ### second branch
