@@ -75,11 +75,11 @@ class Character:
         if self.has_sword == True and enemy_char.has_armor == False:
             print("\n{my_name} has attacked {enemy_name} for {damage} damage!".format(my_name=self.name, enemy_name=enemy_char.name, damage=round(self.level * 2)))
             print("{name}'s sword did exceptional damage against the armorless foe!".format(name=self.name))
-            enemy_char.lose_health(round(self.level * 4))
+            enemy_char.lose_health(round(self.level * 2))
         if self.has_sword == True and enemy_char.has_armor == True:
             print("\n{my_name} has attacked {enemy_name} for {damage} damage!".format(my_name=self.name, enemy_name=enemy_char.name, damage=round(self.level)))
             print("{name}'s sword damaged the foe's armor!".format(name=self.name))
-            enemy_char.lose_health(round(self.level * 2))
+            enemy_char.lose_health(round(self.level))
             enemy_char.has_armor = False
         if self.has_sword == False and enemy_char.has_armor == True:
             print("\n{my_name} has attacked {enemy_name} for {damage} damage!".format(my_name=self.name, enemy_name=enemy_char.name, damage=round(self.level * .5)))
@@ -98,6 +98,7 @@ class Character:
         print("\n{name} has levelled up! \nHe is now level {level}.".format(name=self.name, level = self.level))
         self.max_health = self.level * 6
         self.health += 4
+        print("{name} feels stronger and slightly rejuvenated!".format(name=self.name))
     
     def use_potion(self):
         if self.num_potions <=0:
@@ -354,6 +355,9 @@ if character_select == ant:
 ### first branch    
 room_choice = input("\nThere's nothing more in this room. It's time to move on.\nThere are seemingly two exits: through the broken cell door, or through a large crevice in the back of the wall. \nWhich do you take: Door or Crevice?")
 room_choice = room_choice.lower()
+while room_choice != "door" and room_choice != "crevice":
+    room_choice = input("That is not a viable option. Choose 'door' or 'crevice' to continue.")
+    room_choice = room_choice.lower()
 if room_choice == "door":
     print("\n{name} makes his way over to the cell door. The broken door appears to be stuck.".format(name=character_select.name))
     break_choice = input("Do you attempt to break through?")
@@ -397,7 +401,7 @@ if room_choice == "crevice":
     else:
         kill_count += 1
         print("{name} has defeated {killcount} foes.\n".format(name=character_select.name, killcount = kill_count))
-        print("Defeating the enemy, {name} plunders the room for a boon.".format(name=character_select.name))
+        print("Vanquishing the enemy, {name} plunders the room for a boon.".format(name=character_select.name))
         print("A small chest hides lies behind the once again lifeless skeleton.")
         character_select.loot_chest
 
@@ -513,7 +517,13 @@ if door_choice == "arch":
 ### third branch
 
 print("\nFrom one dark, damp room into another, {name} takes his time sneaking down a long corridor. \nWhat little light there is comes from failing distant sconces.".format(name=character_select.name))
-print("Following the hallway, he takes a turn and is suddenly faced with two ornate doors, one on either side of the hall. \n\nThe door on the left is almost glowing red. There is a small engraving across the top, in an unknown script. \nThe door on the right is blacker than night, and almost seems to suck the light itself in. \nMeanwhile, the path forward seems to lie clear.")
+go_choice = input("Ready to move forward?")
+go_choice = go_choice.lower()
+while go_choice != "yes":
+    go_choice = input("{name} finds no rest in this place. Move on?".format(name=character_select.name))
+    go_choice = go_choice.lower()
+if go_choice == "yes":
+    print("Following the hallway, he takes a turn and is suddenly faced with two ornate doors, one on either side of the hall. \n\nThe door on the left is almost glowing red. There is a small engraving across the top, in an unknown script. \nThe door on the right is blacker than night, and almost seems to suck the light itself in. \nMeanwhile, the path forward seems to lie clear.")
 path_choice = input("Which way calls forth? Left, Right, or Forward?")
 path_choice = path_choice.lower()
 while path_choice != "left" and path_choice != "right" and path_choice != "forward":
