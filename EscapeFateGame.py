@@ -402,8 +402,8 @@ if room_choice == "crevice":
         kill_count += 1
         print("{name} has defeated {killcount} foes.\n".format(name=character_select.name, killcount = kill_count))
         print("Vanquishing the enemy, {name} plunders the room for a boon.".format(name=character_select.name))
-        print("A small chest hides lies behind the once again lifeless skeleton.")
-        character_select.loot_chest
+        print("A small chest lies behind the once again lifeless skeleton.")
+        character_select.loot_chest()
 
 ##############################################################################################################
 ### second branch
